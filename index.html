@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style media="screen">
+    .outline-none{
+      outline:none !important
+    }
+  </style>
+  <title>VueLessons</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+
+      <div class="overflow-hidden ">
+        <img :src="image" width="300em" alt="">
+      </div>
+      <div class=" ml-4 overflow-hidden">
+        <h1>{{product}}</h1>
+        <p v-if='inStock'>Em stock</p>
+        <p v-else="inStock">Fora de stock</p>
+        <ul>
+          <li v-for="detail in details">{{detail}}</li>
+        </ul>
+        <h4>Cores</h4>
+        <div v-for="variant in variants" :key="variant.variantId">
+          <p @mouseover="updateProduct(variant.variantImage)"> {{variant.variantColor}}</p>
+        </div>
+        <button class="btn-secondary rounded" v-on:click="addToCart"> Add to cart ({{cart}})</button>
+        <button class="btn-danger rounded outline-none" v-on:click="removeFromCart">-</button>
+        <div class="alert mt-2 alert-warning alert-dismissible fade show"  v-if="showAlert" role="alert">
+          {{alert}}
+          <button type="button" class="close outline-none" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" v-on:click="showAlert=false">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+</body>
+
+</html>
