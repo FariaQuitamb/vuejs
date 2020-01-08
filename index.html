@@ -22,7 +22,7 @@
       <div class="overflow-hidden ">
         <img :src="image" width="300em" alt="">
       </div>
-      <div class=" ml-4 overflow-hidden">
+      <div class=" ml-4 overflow-hidden p-3">
         <h1>{{product}}</h1>
         <p v-if='inStock'>Em stock</p>
         <p v-else="inStock">Fora de stock</p>
@@ -30,11 +30,12 @@
           <li v-for="detail in details">{{detail}}</li>
         </ul>
         <h4>Cores</h4>
-        <div v-for="variant in variants" :key="variant.variantId">
-          <p @mouseover="updateProduct(variant.variantImage)"> {{variant.variantColor}}</p>
-        </div>
-        <button class="btn-secondary rounded" v-on:click="addToCart"> Add to cart ({{cart}})</button>
-        <button class="btn-danger rounded outline-none" v-on:click="removeFromCart">-</button>
+          <span class="btn btn-lg p-4 mr-2 mb-3"  v-for="variant in variants" :key="variant.variantId"  @mouseover="updateProduct(variant.variantImage)" :style=" {backgroundColor: variant.variantColor}"></span>
+
+      <div>
+        <button  class="btn btn-lg btn-primary" v-on:click="addToCart" :disabled="!inStock"> Add to cart ({{cart}})</button>
+        <button class="btn btn-danger btn-lg outline-none" v-on:click="removeFromCart" :disabled="cart==0">-</button>
+      </div>
         <div class="alert mt-2 alert-warning alert-dismissible fade show"  v-if="showAlert" role="alert">
           {{alert}}
           <button type="button" class="close outline-none" data-dismiss="alert" aria-label="Close">

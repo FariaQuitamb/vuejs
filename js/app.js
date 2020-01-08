@@ -8,12 +8,12 @@ data: {
   variants:[
     {
       variantId:01,
-      variantColor: 'blue',
+      variantColor: 'black',
       variantImage: './img/black-shoes.jpg'
     },
     {
       variantId:02,
-      variantColor: 'black',
+      variantColor: 'blue',
       variantImage: './img/blue-shoes.jpg'
     }
   ],
@@ -26,13 +26,7 @@ methods:{
     this.cart += 1
   },
   removeFromCart(){
-
-    if (this.cart==0) {
-        this.alert="Carrinho vázio";
-        this.showAlert = true
-    }else {
-        this.cart -= 1
-    }
+    this.cart -= 1
   },
   updateProduct(variantImage){
     this.image = variantImage
